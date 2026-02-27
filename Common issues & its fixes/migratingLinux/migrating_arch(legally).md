@@ -45,13 +45,13 @@ The first step is to figure out which disk is the old one and which is the new o
 To display all block devices (e.g. disks, partitions), you should see something similar to:
 ``` bash
 NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
-sda                     8:0    0   500G  0  disk
-├─sda1                8:1    0   512M  0  part
-└─sda2               8:2    0 499.5G 0 part
-sdb                    8:16   1   16G      0  disk
-├─sdb1               8:17   1    512M 0  part
-└─sdb2              8:18   1   15.5G 0  part
-nvme0n1         259:0    0   1.8T  0  disk
+sda            8:0  0    500G 0 disk
+├─sda1         8:1  0   512M  0  part
+└─sda2         8:2  0  499.5G 0 part
+sdb            8:16 1    16G  0  disk
+├─sdb1         8:17 1    512M 0  part
+└─sdb2        8:18  1   15.5G 0  part
+nvme0n1       259:0 0   1.8T  0  disk
 ```
 Note that this is just an **example**, don't panic if your output is different.
 Figure out which is the new disk (destination). Usually it is the disk with no partitions, like nvme0n1 here <br>
