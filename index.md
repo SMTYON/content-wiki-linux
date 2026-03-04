@@ -35,9 +35,7 @@ Some sections are still under construction — **you can help complete them!**
 | 🧱 **Linux Basics** | ✅ Ready | Shell, filesystem, permissions, processes |
 | ⚙️ **System Internals** | ⚠️ Partial | Kernel, memory, scheduling, DBus, systemd _(help us expand!)_ |
 | 🚀 **DevOps & Automation** | ⚠️ Partial | Docker, CI/CD, Ansible, automation _(contribute your notes!)_ |
-| 🧩 **System Administration** | ⚠️ Partial | Users, services, networking, logs _(coming soon)_ |
 | 🧯 **Common Issues & Fixes** | ⚠️ Partial | Real-world problems & solutions _(share your fixes!)_ |
-| 🧠 **Concepts & Components** | ⚠️ Partial | systemd, udev, init, DBus, Wayland _(help us document!)_ |
 | ⚡ **Embedded & Low-Level Linux** | ⏳ Soon | Bootloaders, device trees, kernel configs _(contributors needed!)_ |
 | 🧰 **Development & Debugging** | ⏳ Soon | Tools, debugging, tracing, system programming |
 | 📚 **References & Resources** | ✅ Ready | Books, articles, tools, contributors |
@@ -90,10 +88,8 @@ If you see a section that is incomplete, you can:
 - [Linux Basics](./linux-basics/) ✅  
 - [System Internals](./system-internals/) ⚠️  
 - [DevOps & Automation](./devops/) ⚠️  
-- [System Administration](./sysadmin/) ⚠️  
 - [Embedded Linux](./embedded/) ⏳  
 - [Common Issues & Fixes](./issues/) ⚠️  
-- [Concepts & Components](./concepts/) ⚠️  
 - [Development & Debugging](./development/) ⏳  
 - [References](./references/) ✅
 
