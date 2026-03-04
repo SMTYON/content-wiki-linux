@@ -1,6 +1,8 @@
+---
+title: "🐧 The Linux Wiki — Built by Learners, for Learners"
+---
 ![Nano](file.jpeg)
 
-# 🐧 The Linux Wiki — Built by Learners, for Learners
 
 > _“Understanding Linux is not a task — it’s a journey we take together.”_
 
