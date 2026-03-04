@@ -1,8 +1,12 @@
 ---
 title: "🐧 The Linux Wiki — Built by Learners, for Learners"
 ---
-![Nano](file.jpeg)
 
+<div align="center">
+
+![[file.jpeg|600]]
+
+</div>
 
 > _“Understanding Linux is not a task — it’s a journey we take together.”_
 
