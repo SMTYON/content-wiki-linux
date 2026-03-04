@@ -3,7 +3,7 @@ name: Trigger Quartz Build
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   dispatch:
@@ -15,5 +15,5 @@ jobs:
           # This token must be your Org Secret
           token: ${{ secrets.ORG_LINUX_WIKI }}
           # Replace with your actual Org and Repo names
-          repository: test-mohammed-community/quartz-repo
+          repository:     Open-Source-Community/quartz-repo
           event-type: content_updated
