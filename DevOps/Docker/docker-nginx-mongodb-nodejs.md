@@ -1,4 +1,7 @@
-# Docker with Nginx, MongoDB & NodeJS
+---
+title: "Docker with Nginx, MongoDB & NodeJS"
+author: "Salma Ayman"
+---
 
 We will continue from the previous [Docker with MongoDB & NodeJS](docker-mongodb-nodejs.md) and add Nginx to the mix.
 

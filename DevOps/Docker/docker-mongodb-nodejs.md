@@ -1,4 +1,7 @@
-# Docker with MongoDB & NodeJS
+---
+title: "Docker with MongoDB & NodeJS"
+author: "Salma Ayman"
+---
 
 In this example, we will create a simple Node.js application that connects to a MongoDB database. We will use Docker to run both the Node.js application and the MongoDB database.
 

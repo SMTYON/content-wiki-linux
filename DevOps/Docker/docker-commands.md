@@ -1,4 +1,7 @@
-# Docker Commands
+---
+title: "Docker Commands"
+author: "Salma Ayman"
+---
 
 Docker commands are used to interact with the Docker daemon via the CLI. Here are some of the most commonly used Docker commands:
 

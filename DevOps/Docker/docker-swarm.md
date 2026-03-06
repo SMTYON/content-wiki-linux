@@ -1,4 +1,7 @@
-# Docker Swarm
+---
+title: "Docker Swarm"
+author: "Salma Ayman"
+---
 
 Docker Swarm is an orchestration management tool that runs on Docker applications. It allows you to manage multiple docker nodes (containers) easily.
 

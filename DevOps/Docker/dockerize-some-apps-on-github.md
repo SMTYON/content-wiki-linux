@@ -1,4 +1,7 @@
-# Dockerize some apps on Github
+---
+title: "Dockerize some apps on Github"
+author: "Salma Ayman"
+---
 
 I will pick some random apps from Github and Dockerize them. This will help me gain more experience with Docker and also learn how to Dockerize different types of applications.
 

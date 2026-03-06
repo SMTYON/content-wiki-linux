@@ -1,4 +1,7 @@
-# Docker Networking
+---
+title: "Docker Networking"
+author: "Salma Ayman"
+---
 
 When you run applications in Docker containers, these containers need to communicate with each other, with the host machine, and sometimes with external systems. Docker Networking provides the tools and mechanisms to make this possible.
 

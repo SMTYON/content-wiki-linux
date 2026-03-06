@@ -1,4 +1,7 @@
-# Docker Orchestration
+---
+title: "Docker Orchestration"
+author: "Salma Ayman"
+---
 
 Docker orchestration is the process of managing multiple containers running on multiple hosts. It is used to automate the deployment, scaling, and management of containerized applications.
 

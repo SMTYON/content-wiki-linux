@@ -1,5 +1,7 @@
-# My Solution to the [Traffic Light Docker Challenge](https://github.com/hayk96/trafficlight-docker-challenge#vertical_traffic_light-traffic-light-docker-challenge)
-
+---
+title: "My Solution to the [Traffic Light Docker Challenge](https://github.com/hayk96/trafficlight-docker-challenge#vertical_traffic_light-traffic-light-docker-challenge)"
+author: "Salma Ayman"
+---
 
 ## 1️⃣ Task1: Writing Dockerfiles and building Docker images
 

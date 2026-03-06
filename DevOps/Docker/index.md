@@ -1,4 +1,7 @@
-# Docker Diary
+---
+title: "Docker Diary"
+author: "Salma Ayman"
+---
 
 My learning diary for Docker.
 

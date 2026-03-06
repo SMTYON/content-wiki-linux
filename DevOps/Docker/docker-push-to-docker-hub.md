@@ -1,4 +1,7 @@
-# Pushing Docker Images to Docker Hub
+---
+title: "Pushing Docker Images to Docker Hub"
+author: "Salma Ayman"
+---
 
 When deploying Docker containers in production, it's crucial to follow best practices to ensure a smooth and efficient workflow. **One key practice is to run your pre-built Docker images instead of building them directly in the production environment**. This is where Docker Hub comes in handy. (You can also use other container registries like Amazon ECR, Google Container Registry, etc.)
 

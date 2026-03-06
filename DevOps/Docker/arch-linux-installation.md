@@ -1,5 +1,7 @@
-# Docker Installation on Arch Linux
-
+---
+title: "Docker Installation on Arch Linux"
+author: "Salma Ayman"
+---
 
 1. Installing Docker package:
 

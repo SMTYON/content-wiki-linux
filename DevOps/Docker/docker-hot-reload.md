@@ -1,4 +1,7 @@
-# Docker Hot Reload
+---
+title: "Docker Hot Reload"
+author: "Salma Ayman"
+---
 
 ## Why Do We Need Hot Reload?
 

@@ -1,4 +1,7 @@
-# Docker Environment Variables
+---
+title: "Docker Environment Variables"
+author: "Salma Ayman"
+---
 
 Environment variables are key-value pairs that are used to pass configuration settings to Docker containers. They are used to set up the environment inside the container, such as database connection strings, API keys, and other configuration settings.
 

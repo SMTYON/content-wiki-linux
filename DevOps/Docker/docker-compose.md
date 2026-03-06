@@ -1,4 +1,7 @@
-# Docker Compose
+---
+title: "Docker Compose"
+author: "Salma Ayman"
+---
 
 Docker Compose is a tool for defining and running multi-container Docker applications. This means you can run a project with multiple containers using a single source.
 
