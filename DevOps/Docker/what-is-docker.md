@@ -16,7 +16,7 @@ You may also face the problem of different versions of the same dependency on di
 
 So, Docker comes to the rescue!
 
-![meme](imgs/batman.jpg)
+![meme](/imgs/DevOps/Docker/batman.jpg)
 
 
 # What is Docker?
@@ -38,7 +38,7 @@ So a developer can build a container image having different applications install
 
 ## Containerization vs. Virtualization
 
-![Containerization vs. Virtualization](imgs/Containers_VirtualMachines.png)
+![Containerization vs. Virtualization](/imgs/DevOps/Docker/Containers_VirtualMachines.png)
 
 ### Virtual Machines (VMs)
 
@@ -73,7 +73,7 @@ Docker is a Container Engine and not the only one, actually it’s not even the 
 
 # Docker Containerization
 
-![about-docker](imgs/about-dockerworking.jpg)
+![about-docker](/imgs/DevOps/Docker/about-dockerworking.jpg)
 
 ### Docker File
 
@@ -89,7 +89,7 @@ Docker is a Container Engine and not the only one, actually it’s not even the 
 
 - Here is an example of a Dockerfile:
 
-    ![Dockerfile](imgs/docker-file-example.png)
+    ![Dockerfile](/imgs/DevOps/Docker/docker-file-example.png)
 
 ### Docker Image
 
@@ -103,7 +103,7 @@ Docker is a Container Engine and not the only one, actually it’s not even the 
 - Docker images are built in layers, each representing a set of file system changes or instructions in the Dockerfile (the script used to assemble the image). Each command in a Dockerfile (such as `RUN`, `COPY`, `ADD`) creates a new layer.
     - For example, you can have a base image with an OS, then add a layer with Python, then add a layer with your application code.
 
-![Docker Image](imgs/docker-image.png)
+![Docker Image](/imgs/DevOps/Docker/docker-image.png)
 
 ### Docker Container
 
@@ -135,7 +135,7 @@ Docker is a Container Engine and not the only one, actually it’s not even the 
     - All big cloud providers(e.g., AWS, Azure, Google Cloud) have their own private registries. You need to authenticate to access the images.
 
 
-![Docker Registry](imgs/Docker-Registry.png)
+![Docker Registry](/imgs/DevOps/Docker/Docker-Registry.png)
 
 ### Registry vs Repository
 

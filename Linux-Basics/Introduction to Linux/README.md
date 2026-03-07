@@ -31,7 +31,7 @@ Kernel acts as a bridge between application software and hardware of the system.
   - Kernel will immediately ask Camera lens and Microphone inside my phone to wake up and start working.
   - Now, both S/W and H/W will work together happily.
 
-![OS-Kernel](imgs/intro-to-linux/intro-to-linux/OS-Kernel.png)
+![OS-Kernel](/imgs/intro-to-linux/OS-Kernel.png)
 
 
 ### Conclusion
@@ -42,7 +42,7 @@ An operating system is an important software, and it is impossible to run a syst
 
 # GNU/Linux
 
-![GNU/Linux](imgs/intro-to-linux/intro-to-linux/gnu-linux.png)
+![GNU/Linux](imgs/intro-to-linux/gnu-linux.png)
 
 ### GNU
 
@@ -50,19 +50,19 @@ GNU is an acronym for **GNU’s Not UNIX**. The founder of the GNU project is **
 
 The GNU project is a replacement for UNIX and does not contain any UNIX based code. It was created to produce a free software alternative to Unix. They were able to produce most of the programs an operating system would provide, **but their kernel.**
 
-<img src="imgs/intro-to-linux/intro-to-linux/GNU.png" width="200" height="200">
+<img src="imgs/intro-to-linux/GNU.png" width="200" height="200">
 
 ### Linux
 
 **Linux is a kernel**, the most base level of an operating system, and was created and published under the **GNU GPL**, a free license. It came to be adopted as the kernel of the GNU OS.
 
-![Linux](imgs/intro-to-linux/intro-to-linux/Linux.jpg)
+![Linux](imgs/intro-to-linux/Linux.jpg)
 
 > **Note:** The **correct term** is **GNU/Linux** not just Linux or GNU, because it is the GNU operating system using the Linux kernel.  We just say Linux because it is shorter, easier to say, and more popular.
 
 ### Where did it come from?
 
-![Timeline](imgs/intro-to-linux/intro-to-linux/timeline.png)
+![Timeline](imgs/intro-to-linux/timeline.png)
 
 **Extras:** [History of Operating Systems | تاريخ أنظمة التشغيل](https://www.youtube.com/watch?v=fxXGLMPJnFQ)
 

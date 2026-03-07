@@ -31,6 +31,7 @@ order:
   - folder: "Job-Scheduling"
   - folder: "Networking"
   - folder: "Package-Managers"
+  - file: "README"
 
 - folder: "Git--and--githuhb"
 

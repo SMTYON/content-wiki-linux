@@ -28,13 +28,16 @@ We use `at` when the future task will be executed one time and will not be repea
 
 ### `atq`
 To see all the tasks scheduled by `at`.
-![](./imgs/atq.png)
+
+![](/imgs/job-scheduling/atq.png)
+
 #### ***Note*** : 
 if you want to see more details about a task use the command : `at -c <task id>`
 ### `atrm` 
 To remove a scheduled task.\
 `atrm <task id>`
-![](./imgs/atrm-1.png)
+
+![](/imgs/job-scheduling/atrm-1.png)
 
 ### `batch`
 
@@ -63,7 +66,7 @@ crontab -u ali -e
 crontab -l 
 ```
 ### `Crontab` Syntax
-![](./imgs/cron_fields.png)
+![](/imgs/job-scheduling/cron_fields.png)
 
 #### **Examples of Scheduled Tasks** :
 ```
@@ -83,7 +86,7 @@ crontab -l
 # run a script at the begining of each month 12:00 A.M.
 ```
 ### **Crontab shortcuts** : 
-![](./imgs/cron-shortcuts.png)
+![](/imgs/job-scheduling/cron-shortcuts.png)
 
 ```
 @reboot ali_osama /home/ali_osama/my-scripts/script.sh
@@ -99,10 +102,10 @@ Whereas if you use anacron whenever next time you desktop/laptop comes up again,
 
 ### Schedule a job using `anacron`
 The syntax is shown in the picture below : 
-![](./imgs/anacron-file.png)
+![](/imgs/job-scheduling/anacron-file.png)
 
 ## `cron` vs `anacron` 
-![](./imgs/cron-vs-anacron.png)
+![](/imgs/job-scheduling/cron-vs-anacron.png)
 
 ## Limit access to `at` and `cron`
 `at` and `cron` manage access based on the files `/etc/at.deny` & `cron.deny`.\

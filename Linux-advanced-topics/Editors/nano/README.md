@@ -16,7 +16,7 @@
 
 - E.g, `Nano +4 text` This opens the file with the cursor on line 4.
 
-![Nano](imgs/nano.png)
+![Nano](/imgs/Editors/nano/nano.png)
 
 - At the bottom of the window, there is a list of the most basic command shortcuts to use with the nano editor.
 
@@ -42,13 +42,13 @@
 
 - As soon as you modify anything in the file, you’ll notice that it reflects this information on the editor.
 
-![Editing Files](imgs/modified.png)
+![Editing Files](/imgs/Editors/nano/modified.png)
 
 ### Jump to line X
 
 - To move the cursor to a specific line and character number, use the `Ctrl+ Shift+ –` command. The menu on the bottom of the screen will change to “Enter line number, column number:”. Type then hit Enter.
 
-![Jump to line X](imgs/Jump-to-line-X.png)
+![Jump to line X](/imgs/Editors/nano/Jump-to-line-X.png)
 
 
 ### Search for a text
@@ -96,7 +96,7 @@ export EDITOR="$VISUAL"
 
 #  Nano cheatsheet 
 
-![Nano cheatsheet](imgs/cheat-sheet.png)
+![Nano cheatsheet](/imgs/Editors/nano/cheat-sheet.png)
 
 ---------------------------------------
 

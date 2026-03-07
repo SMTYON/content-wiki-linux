@@ -39,7 +39,7 @@ By keeping these components organized in a certain format, the entire process of
 
 ## How does the package manager work
 
-![How does the package manager work](imgs/How-does-the-package-manager-work.png)
+![How does the package manager work](/imgs/package-manager/How-does-the-package-manager-work.png)
 
 - Almost all Linux distributions have **software repositories** which is basically collection of software packages. Yes, there could be more than one repository. The repositories contain software packages of different kind.
 
@@ -51,7 +51,7 @@ By keeping these components organized in a certain format, the entire process of
 
 - A package may have dependencies. Meaning that it may require other packages to be installed. The package manager often takes care of the dependencies and installs it automatically along with the package you are installing.
 
-    ![dependencies](imgs/dependencies.png)
+    ![dependencies](/imgs/package-manager/dependencies.png)
 
 - Similarly, when you remove a package using the package manager, it either automatically removes or informs you that your system has unused packages that can be cleaned.
 

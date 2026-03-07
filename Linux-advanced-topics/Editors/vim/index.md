@@ -99,7 +99,7 @@ Now that you have Vim installed, run this from the terminal: `vim`
 
 You should see an **intro screen**. This is the where you will be working on your file. Unlike most text editors and IDEs, **Vim is a modal editor.** If you want to type `abc` you need to switch to insert mode with `i`. 
 
-![VIM](imgs/intro-screen.png)
+![VIM](intro-screen.png)
 
 ### Opening a File
 
@@ -127,7 +127,7 @@ At any time, you can see which mode you are in on the status bar of the editor, 
 - **insert normal** mode is shown by the modeline as `-- (insert) --`
 - …etc
 
-![Vim Modes](imgs/vim-modes.png)
+![Vim Modes](vim-modes.png)
 
 > **A side note**\
 > Vim actually has **seven** so-called **'basic modes'**, and **six** **'additional modes'**, for a grand total of **13 unique modes.** That sounds super daunting — but even expert Vimmers typically use just three or four of these modes regularly.

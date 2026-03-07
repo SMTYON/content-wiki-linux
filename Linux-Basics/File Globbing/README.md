@@ -60,13 +60,13 @@
 
 ### Examples
 
-![File Basic Patterns](img/file-globbing/File-Basic-Patterns.png)
+![File Basic Patterns](imgs/file-globbing/File-Basic-Patterns.png)
 
-![Exclude Patterns](img/file-globbing/Exclude-Patterns.png)
+![Exclude Patterns](imgs/file-globbing/Exclude-Patterns.png)
 
-![Braces Expansion](img/file-globbing/Braces-Expansion.png)
+![Braces Expansion](imgs/file-globbing/Braces-Expansion.png)
 
-![Tilde Expansion](img/file-globbing/tilde.png)
+![Tilde Expansion](imgs/file-globbing/tilde.png)
 
 ---------------------------------------------------------------
 
@@ -82,7 +82,7 @@
 | `+(patterns)` | Match **one** or **more** occurrences of the patterns.     |
 | `@(patterns)` | Match **one** occurrence of the patterns.                  |
 
-![extglob](img/file-globbing/extglob.png)
+![extglob](imgs/file-globbing/extglob.png)
 
 
 > Note, extended globs cannot span directory separators. For example, +(hello/world|other) is not valid
@@ -95,7 +95,7 @@
 
 - `**` : recursively match any number of layers of non-hidden directories. For example, /hello/**/* matches all descendants of /hello.
 
-![Globstar](img/file-globbing/globstar.png)
+![Globstar](imgs/file-globbing/globstar.png)
 
 ----------------------------------------------------------
 

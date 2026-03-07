@@ -26,6 +26,6 @@ Docker Swarm works on a master-slave architecture. The master node is responsibl
 
 Worker nodes are responsible for running the containers. They receive tasks from the manager node and execute them.
 
-![Docker Swarm Architecture](./imgs/docker-swarm-architecture.png)
+![Docker Swarm Architecture](/imgs/DevOps/Docker/docker-swarm-architecture.png)
 
 --------------------

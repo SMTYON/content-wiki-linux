@@ -11,9 +11,93 @@
             "id": "b4feec1ef5f76a77",
             "type": "leaf",
             "state": {
+              "type": "image",
+              "state": {
+                "file": "imgs/DevOps/Docker/about-dockerworking.jpg"
+              },
+              "icon": "lucide-image",
+              "title": "about-dockerworking"
+            }
+          },
+          {
+            "id": "911d0de9456fa3ae",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "imgs/DevOps/Docker/Containers_VirtualMachines.png"
+              },
+              "icon": "lucide-image",
+              "title": "Containers_VirtualMachines"
+            }
+          },
+          {
+            "id": "387cab2b02c292d0",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "imgs/DevOps/Docker/docker_future-e1468491725978.jpg"
+              },
+              "icon": "lucide-image",
+              "title": "docker_future-e1468491725978"
+            }
+          },
+          {
+            "id": "aa4dbaa4c07ac27d",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "imgs/DevOps/Docker/meme.jpeg"
+              },
+              "icon": "lucide-image",
+              "title": "meme"
+            }
+          },
+          {
+            "id": "39f808fb8e3166fa",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "imgs/DevOps/Docker/about-dockerworking.jpg"
+              },
+              "icon": "lucide-image",
+              "title": "about-dockerworking"
+            }
+          },
+          {
+            "id": "f840e762a3d0bc90",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "imgs/DevOps/Docker/meme.jpeg"
+              },
+              "icon": "lucide-image",
+              "title": "meme"
+            }
+          },
+          {
+            "id": "9c4ee19e7ac7cce9",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "imgs/DevOps/Docker/docker-user-defined-bridge-network.png"
+              },
+              "icon": "lucide-image",
+              "title": "docker-user-defined-bridge-network"
+            }
+          },
+          {
+            "id": "04d2e7d5bd69e07f",
+            "type": "leaf",
+            "state": {
               "type": "markdown",
               "state": {
-                "file": "index.md",
+                "file": "Linux-advanced-topics/Editors/vim/index.md",
                 "mode": "source",
                 "source": false
               },
@@ -21,7 +105,8 @@
               "title": "index"
             }
           }
-        ]
+        ],
+        "currentTab": 7
       }
     ],
     "direction": "vertical"
@@ -183,32 +268,51 @@
       "bases:Create new base": false
     }
   },
-  "active": "b4feec1ef5f76a77",
+  "active": "4c6cb873c8c20e53",
   "lastOpenFiles": [
-    "file.jpeg",
-    "contrbuite.md",
-    "Tools/README.md",
-    "Linux-Basics/Dealing with Users & Groups/README.md",
-    "How to install/README.md",
-    "How to install/index.md",
-    "Git & githuhb/github/Readme.md",
-    "Git & githuhb/git/hands-on/Readme.md",
-    "Common issues & its fixes/README.md",
-    "DevOps/README.md",
+    "Linux-advanced-topics/Editors/README.md",
+    "Linux-Basics/Text Processing/Awk/README.md",
+    "Linux-advanced-topics/Editors/nano/README.md",
+    "imgs/Editors/nano/cheat-sheet.png",
+    "imgs/Editors/nano/Jump-to-line-X.png",
+    "imgs/Editors/nano",
+    "Linux-Basics/Files Permissions & Ownership/README.md",
+    "Linux-Basics/File Globbing/README.md",
+    "Linux-Basics/Linux Desktop/README.md",
+    "Linux-Basics/Introduction to Linux/README.md",
+    "Linux-advanced-topics/Editors/vim/index.md",
+    "imgs/Editors/VIM/intro-screen.png",
+    "imgs/Editors/VIM",
+    "imgs/Editors",
+    "DevOps/Docker/what-is-docker.md",
+    "Linux-Basics/Creating Links/README.md",
+    "imgs/creating-links/showing_inodes.png",
+    "Linux-advanced-topics/Networking/imgs/asymmetric-example.png",
+    "imgs/DevOps/Docker/about-dockerworking.jpg",
+    "imgs/DevOps/Docker/docker-user-defined-bridge-network.png",
+    "imgs/DevOps/Docker/Docker-Registry.png",
+    "imgs/DevOps/Docker/docker-file-example.png",
+    "imgs/DevOps/Docker/docker-environment-variables.png",
+    "DevOps/Docker/arch-linux-installation.md",
     "index.md",
-    "Linux-Basics/CLI & Linux File System/README.md",
-    "Linux-Basics/CLI & Linux File System/Terminal-Types.md",
-    "Linux-Basics/CLI & Linux File System/imgs/example_absolute_and_relative_path.png",
-    "Linux-Basics/CLI & Linux File System/imgs/Continuing-a-long-command-on-another-line.png",
-    "Linux-Basics/CLI & Linux File System/imgs/Command-history.png",
-    "Linux-Basics/CLI & Linux File System/imgs/command_line_syntax.jpg",
-    "Linux-Basics/CLI & Linux File System/imgs/command_line_prompt.jpg",
-    "Linux-Basics/CLI & Linux File System/imgs/cd.jpg",
-    "manifesto.md",
-    "Linux advanced topics/Editors/nano/README.md",
-    "Linux-Basics/README.md",
-    "Linux-Basics/Boot Process/README.md",
-    "Linux-Basics/Boot Process/imgs/bootProcess.jpeg",
-    "Linux-Basics/Boot Process/imgs/bootloader.jpg"
+    "imgs/DevOps/Docker",
+    "imgs/DevOps",
+    "DevOps/Docker/dockerize-some-apps-on-github.md",
+    "DevOps/Docker/docker-networking.md",
+    "DevOps/Docker/docker-nginx-mongodb-nodejs.md",
+    "DevOps/Docker/docker-file.md",
+    "DevOps/Docker/docker-mongodb-nodejs.md",
+    "DevOps/Docker/docker-hot-reload.md",
+    "DevOps/Docker/docker-environment-variables.md",
+    "DevOps/README.md",
+    "DevOps/Docker/trafficlight-docker-challenge-solution.md",
+    "DevOps/Docker/index.md",
+    "DevOps/Docker/imgs",
+    "DevOps/Docker/docker-volumes.md",
+    "DevOps/Docker/docker-swarm.md",
+    "DevOps/Docker/docker-push-to-docker-hub.md",
+    "DevOps/Docker/docker-orchestration.md",
+    "DevOps/Docker/Docker/imgs",
+    "DevOps/Docker/Docker"
   ]
 }

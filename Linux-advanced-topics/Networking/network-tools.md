@@ -93,7 +93,7 @@ ifconfig <interface name> <new ip>
 ifconfig <interface name> netmask <new mask> broadcast <new broadcast>
 ```
 
-![](./imgs/ifconfig-change-ip-1.png)
+![](/imgs/Networking/ifconfig-change-ip-1.png)
 
 - **IP address information line :**
 
@@ -188,11 +188,11 @@ This command is used to query the Domain Name System (DNS) for information about
 
 `ns : nameserver`
 
-![](./imgs/dig-ns.png)
+![](/imgs/Networking/dig-ns.png)
 
 `mx : mail exchange server`
 
-![](./imgs/dig-mx.png)
+![](/imgs/Networking/dig-mx.png)
 
 -------------------------------------------------------
 
@@ -228,9 +228,9 @@ Note that this mapping is **only valid on your local machine** and will not affe
 
 ### Example
 
-![](./imgs/myserver.png) 
+![](/imgs/Networking/myserver.png) 
 
-![](./imgs/pingmyserver.png)
+![](/imgs/Networking/pingmyserver.png)
 
 -------------------------------------------------------
 
@@ -242,10 +242,10 @@ The main difference between them is that `curl` transfers data from any server o
 
 wget | curl
 ---- | ---
-![](./imgs/wget.png) | ![](./imgs/curl.png)
+![](/imgs/Networking/wget.png) | ![](/imgs/Networking/curl.png)
 
 
-![](./imgs/wget_vs_curl.png)
+![](/imgs/Networking/wget_vs_curl.png)
 
 ## `wget`
 
@@ -287,7 +287,7 @@ Symmetric encryption is a type of encryption where **one key** can be used to en
 
 This type of encryption scheme is often called **shared secret** encryption, or **secret key** encryption. There is typically only a single key that is used for all operations.
 
-![Symmetric Encryption](imgs/symmetric-example.png)
+![Symmetric Encryption](/imgs/Networking/symmetric-example.png)
 
 ### Asymmetric Encryption (public & private key)
 
@@ -297,7 +297,7 @@ Asymmetric encryption uses a pair of related keys — **a public and a private k
 
 The **public key** is shared openly **with everyone**, while the **private key** must remain known **only to its owner**. 
 
-![Asymmetric encryption](imgs/asymmetric-example.png)
+![Asymmetric encryption](/imgs/Networking/asymmetric-example.png)
 
 Because asymmetric encryption is a **more complicated** process than its symmetric counterpart, **the time required is greater**. However, this type of encryption offers a **higher level of security** as compared to symmetric encryption since the private key is not meant to be shared and is kept a secret. 
 
@@ -330,11 +330,11 @@ ssh was a very good replacement to a protocol called **telnet** that **was trans
 
 ### **SSH Key Generation** :
 #### **For Linux**: 
-![](./imgs/ssh-key-gen-linux.png)
-![](./imgs/show-keys-linux.png)
+![](/imgs/Networking/ssh-key-gen-linux.png)
+![](/imgs/Networking/show-keys-linux.png)
 
 #### **For Windows**: 
-![](./imgs/ssh-keygen.jpg)
+![](/imgs/Networking/ssh-keygen.jpg)
 
 
 ### Syntax  

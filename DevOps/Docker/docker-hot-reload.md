@@ -43,7 +43,7 @@ Notice that `-v` must be followed by the **absolute path** of the directory on t
 
 When you use the `-v` flag to mount a local directory into the container, it overrides the content of the container's directory with the content from your local directory. This means that even if files are ignored during the build process, they will still appear in the container if they exist in the mounted directory.
 
-![Hot Reload](./imgs/hot-reload.png)
+![Hot Reload](/imgs/DevOps/Docker/hot-reload.png)
 
 --------------------------------------------
 
