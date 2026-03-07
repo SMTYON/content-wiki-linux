@@ -15,5 +15,5 @@ jobs:
           # Must be an org secret with repo scope on the Quartz repo
           token: ${{ secrets.ORG_LINUX_WIKI }}
           # Your Quartz repo
-          repository: Open-Source-Community/quartz-repo
+          repository: Open-Source-Community/Wiki-Linux
           event-type: content_updated
