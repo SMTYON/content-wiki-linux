@@ -9,7 +9,7 @@ My learning diary for Docker.
 
 ## Before you start
 
-- **Linux Users**: Installing Docker is a breeze with your package manager. If you’re an Arch Linux user like me, check out my guide to [installing Docker on Arch Linux](/imgs/DevOps/Docker/arch-linux-installation.md).
+- **Linux Users**: Installing Docker is a breeze with your package manager. If you’re an Arch Linux user like me, check out my guide to [installing Docker on Arch Linux](/imgs/devops/docker/arch-linux-installation.md).
 
 - **Windows Users**: Oh, Windows users, bless your hearts. If only you could **switch to Linux** and save yourself some hassle!
 
@@ -48,7 +48,7 @@ My learning diary for Docker.
 
 - [Sysadmin with Docker](https://hamk-sysadmin-docker.github.io/exercises/):This is also a good resource to practice Docker.
 
-![meme](/imgs/DevOps/Docker/meme.jpeg)
+![meme](/imgs/devops/docker/meme.jpeg)
 
 ## References
 

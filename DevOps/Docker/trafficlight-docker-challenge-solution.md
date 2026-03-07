@@ -1,9 +1,9 @@
 ---
-title: "My Solution to the [Traffic Light Docker Challenge](https://github.com/hayk96/trafficlight-docker-challenge#vertical_traffic_light-traffic-light-docker-challenge)"
+title: "My Solution to the Traffic Light Docker Challenge"
 author: "Salma Ayman"
 ---
 
-## 1️⃣ Task1: Writing Dockerfiles and building Docker images
+## Task1: Writing Dockerfiles and building Docker images
 
 ### 1.1 Dockerfile
 
@@ -65,7 +65,7 @@ CMD ["node", "app.js"]
 
 ----------------
 
-## 2️⃣ Task2: Running web apps behind Nginx reverse proxy
+##  Task2: Running web apps behind Nginx reverse proxy
 
 
 ### 2.1 Create Docker Network
@@ -114,7 +114,7 @@ server {
 
 ----------------
 
-## 3️⃣ Task3: Running web apps with Nginx load balancing
+##  Task3: Running web apps with Nginx load balancing
 
 ### 3.1 && 3.2 Create docker-compose.yml
 

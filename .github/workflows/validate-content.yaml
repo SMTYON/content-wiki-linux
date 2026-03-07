@@ -1,0 +1,296 @@
+name: Validate Content
+
+on:
+  pull_request:
+    branches: [master]
+    paths:
+      - "**.md"
+  # push:
+  #   branches: [master]
+  #   paths:
+  #     - "**.md"
+
+# Allow the action to post PR comments
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  validate:
+    name: Content Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout content repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # ─────────────────────────────────────────────
+      # 1. Collect changed markdown files
+      # ─────────────────────────────────────────────
+      - name: Get changed markdown files
+        id: changed
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD -- '*.md' | tr '\n' ' ')
+          else
+            FILES=$(git diff --name-only HEAD~1 HEAD -- '*.md' | tr '\n' ' ')
+          fi
+          echo "Changed files: $FILES"
+          echo "files=$FILES" >> $GITHUB_OUTPUT
+
+      # ─────────────────────────────────────────────
+      # 2. Set up tools
+      # ─────────────────────────────────────────────
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+          npm install -g markdownlint-cli
+
+      # ─────────────────────────────────────────────
+      # 3. Run all checks, write errors to report file
+      # ─────────────────────────────────────────────
+      - name: Run all content checks
+        id: checks
+        if: always()
+        run: |
+          python3 << 'PYEOF'
+          import os, sys, yaml, glob, re, json
+
+          CHANGED = os.environ.get("CHANGED_FILES", "").split()
+          all_md  = glob.glob("**/*.md", recursive=True)
+          files   = [f for f in CHANGED if f] if CHANGED else all_md
+
+          report = []
+
+          def add(check, filepath, line, msg):
+              report.append({"check": check, "file": filepath, "line": line, "msg": msg})
+
+          # ── Frontmatter ─────────────────────────
+          REQUIRED = ["title", "author"]
+          for filepath in files:
+              if not os.path.isfile(filepath):
+                  continue
+              content = open(filepath, encoding="utf-8").read()
+              if not content.startswith("---"):
+                  add("Frontmatter", filepath, 1, "Missing frontmatter block (must start with `---`)")
+                  continue
+              parts = content.split("---", 2)
+              if len(parts) < 3:
+                  add("Frontmatter", filepath, 1, "Malformed frontmatter — no closing `---`")
+                  continue
+              try:
+                  fm = yaml.safe_load(parts[1]) or {}
+              except yaml.YAMLError as e:
+                  add("Frontmatter", filepath, 1, f"Invalid YAML in frontmatter: {e}")
+                  continue
+              for field in REQUIRED:
+                  if field not in fm or not str(fm[field]).strip():
+                      add("Frontmatter", filepath, 1, f"Missing required field `{field}`")
+
+          # ── Emoji / keycap sequences ─────────────
+          KEYCAP = re.compile(r'[0-9#*]\uFE0F\u20E3')
+          for filepath in files:
+              if not os.path.isfile(filepath):
+                  continue
+              for lineno, line in enumerate(open(filepath, encoding="utf-8"), 1):
+                  if KEYCAP.search(line):
+                      add("Emoji", filepath, lineno,
+                          "Unsupported keycap emoji (e.g. 1️⃣) — breaks Quartz OG image generation. Replace with plain text or a supported emoji.")
+
+          # ── Broken internal links ────────────────
+          known = set()
+          for f in all_md:
+              slug = os.path.splitext(f)[0].lstrip("./")
+              known.add(slug.lower())
+              known.add(os.path.basename(slug).lower())
+
+          WIKILINK = re.compile(r'\[\[([^\]|#]+)(?:[|#][^\]]*)?\]\]')
+          MD_LINK  = re.compile(r'\[[^\]]*\]\((?!https?://)([^)#]+?)(?:#[^)]*)?\)')
+
+          for filepath in files:
+              if not os.path.isfile(filepath):
+                  continue
+              for lineno, line in enumerate(open(filepath, encoding="utf-8"), 1):
+                  if line.strip().startswith("```") or line.strip().startswith("`"):
+                      continue
+                  for m in WIKILINK.finditer(line):
+                      target = os.path.splitext(m.group(1).strip())[0].lower()
+                      if target not in known:
+                          add("Links", filepath, lineno, f"Broken wikilink: `[[{m.group(1)}]]`")
+                  for m in MD_LINK.finditer(line):
+                      target = m.group(1).strip()
+                      if target.startswith("mailto:") or target.startswith("/"):
+                          continue
+                      slug = os.path.splitext(target.lstrip("./"))[0].lower()
+                      if slug not in known:
+                          add("Links", filepath, lineno, f"Broken markdown link: `({m.group(1)})`")
+
+          # ── Write report ─────────────────────────
+          with open("/tmp/check_report.json", "w") as f:
+              json.dump(report, f)
+
+          if report:
+              sys.exit(1)
+          PYEOF
+        env:
+          CHANGED_FILES: ${{ steps.changed.outputs.files }}
+
+      # ─────────────────────────────────────────────
+      # 4. Markdown lint — append to report
+      # ─────────────────────────────────────────────
+      - name: Markdown lint
+        if: always()
+        run: |
+          FILES="${{ steps.changed.outputs.files }}"
+          if [ -z "$FILES" ]; then
+            FILES=$(find . -name "*.md" | tr '\n' ' ')
+          fi
+
+          # Write output to file — avoids fragile inline variable interpolation into Python
+          markdownlint $FILES --disable MD013 MD033 MD041 > /tmp/lint_out.txt 2>&1 || true
+
+          python3 << 'PYEOF'
+          import json, re
+
+          lint_raw = open("/tmp/lint_out.txt").read()
+          report_path = "/tmp/check_report.json"
+
+          try:
+              report = json.load(open(report_path))
+          except Exception:
+              report = []
+
+          pattern = re.compile(r'^(.+?):(\d+)(?::\d+)?\s+(MD\d+\S+.*)$')
+          added = 0
+          for line in lint_raw.splitlines():
+              m = pattern.match(line.strip())
+              if m:
+                  report.append({
+                      "check": "Markdown Lint",
+                      "file": m.group(1),
+                      "line": int(m.group(2)),
+                      "msg": m.group(3)
+                  })
+                  added += 1
+
+          with open(report_path, "w") as f:
+              json.dump(report, f)
+
+          if added:
+              exit(1)
+          PYEOF
+
+      # ─────────────────────────────────────────────
+      # 5. Post PR comment with all errors
+      # ─────────────────────────────────────────────
+      - name: Post failure comment on PR
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let report = [];
+            try {
+              report = JSON.parse(fs.readFileSync('/tmp/check_report.json', 'utf8'));
+            } catch (e) {
+              core.warning('Could not read report file: ' + e);
+            }
+
+            if (report.length === 0) return;
+
+            const groups = {};
+            for (const item of report) {
+              if (!groups[item.check]) groups[item.check] = [];
+              groups[item.check].push(item);
+            }
+
+            const icons = {
+              "Frontmatter":   "📋",
+              "Emoji":         "🔣",
+              "Links":         "🔗",
+              "Markdown Lint": "📝",
+            };
+
+            let body = `## ❌ Content Validation Failed\n\n`;
+            body += `Found **${report.length} issue(s)** in the changed files. Please fix them before merging.\n\n---\n\n`;
+
+            for (const [check, items] of Object.entries(groups)) {
+              const icon = icons[check] || "⚠️";
+              body += `### ${icon} ${check} — ${items.length} issue${items.length > 1 ? 's' : ''}\n\n`;
+              body += `| File | Line | Issue |\n|------|------|-------|\n`;
+              for (const item of items) {
+                body += `| \`${item.file}\` | ${item.line} | ${item.msg} |\n`;
+              }
+              body += `\n`;
+            }
+
+            body += `---\n> 💡 Fix the issues above, push again, and this check will re-run automatically.`;
+
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const existing = comments.find(c =>
+              c.user.type === 'Bot' && c.body.includes('Content Validation')
+            );
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }
+
+      # ─────────────────────────────────────────────
+      # 6. Update comment to green when all fixed
+      # ─────────────────────────────────────────────
+      - name: Post success comment on PR
+        if: success() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const existing = comments.find(c =>
+              c.user.type === 'Bot' && c.body.includes('Content Validation')
+            );
+
+            const body = `## ✅ Content Validation Passed\n\nAll checks passed — frontmatter, links, emoji, and markdown syntax look good! Ready to merge. 🎉`;
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }

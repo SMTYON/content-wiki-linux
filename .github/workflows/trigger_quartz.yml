@@ -12,8 +12,8 @@ jobs:
       - name: Send Repository Dispatch
         uses: peter-evans/repository-dispatch@v3
         with:
-          # This token must be your Org Secret
+          # Must be an org secret with repo scope on the Quartz repo
           token: ${{ secrets.ORG_LINUX_WIKI }}
-          # Replace with your actual Org and Repo names
-          repository:     Open-Source-Community/quartz-repo
+          # Your Quartz repo
+          repository: Open-Source-Community/quartz-repo
           event-type: content_updated

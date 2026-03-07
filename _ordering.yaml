@@ -36,6 +36,23 @@ order:
 - folder: "Git--and--githuhb"
 
 - folder: "DevOps"
+  order:
+  - folder: "Docker"
+    order:
+      - file: "arch-linux-installation"
+      - file: "what-is-docker"
+      - file: "docker-file"
+      - file: "docker-hot-reload"
+      - file: "docker-volumes"
+      - file: "docker-compose"
+      - file: "docker-environments-variables"
+      - file: "docker-environments"
+      - file: "docker-nginx-mongodb-nodejs"
+      - file: "docker-push-to-docker-hub"
+      - file: "docker-networking"
+      - file: "docker-orchestration"
+      - file: "docker-swarm"  
+      - file: "trafficlight-docker-challenge-solution"
 
 - folder: "Tools"
 

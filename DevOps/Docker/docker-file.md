@@ -100,7 +100,7 @@ CMD ["npm", "start"]
 
 - `npm install` installs all the dependencies listed in the `package.json` file. If the `package.json` file has not changed since the last build, Docker will use the cached layer for that step and not execute the `npm install` command again. This speeds up the build process.
 
-![Docker Cache Mechanism](/imgs/DevOps/Docker/docker-cache-mechanism.png)
+![Docker Cache Mechanism](/imgs/devops/docker/docker-cache-mechanism.png)
 
 ------------------------------------------------------------
 

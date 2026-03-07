@@ -62,7 +62,7 @@ docker run -e NODE_ENV=production -e DB_URL=mongodb://localhost:27017/mydb my-im
 ```bash
 docker run --name express-node-app-container -v "$(pwd)":/app -v /app/node_modules --env PORT=4000 --env NODE_ENV=development -d -p 4000:4000 express-node-app
 ```
-![Example](/imgs/DevOps/Docker/docker-environment-variables.png)
+![Example](/imgs/devops/docker/docker-environment-variables.png)
 
 In the above example, we are passing the `PORT` and `NODE_ENV` environment variables to the `express-node-app` container.
 
@@ -100,7 +100,7 @@ docker run --env-file .env my-image
 docker run --name express-node-app-container -v "$(pwd)":/app -v /app/node_modules --env-file .env -d -p 4000:4000 express-node-app
 ```
 
-![Example](/imgs/DevOps/Docker/docker-environment-variables-file.png)
+![Example](/imgs/devops/docker/docker-environment-variables-file.png)
 
 -------------------------
 
@@ -125,7 +125,7 @@ services:
 
 In this example, the `environment` section is used to set the `PORT` and `NODE_ENV` environment variables for the `express-node-app` service.
 
-![Example](/imgs/DevOps/Docker/docker-environment-variables-compose.png)
+![Example](/imgs/devops/docker/docker-environment-variables-compose.png)
       
 You can also use an environment file in Docker Compose by specifying the `env_file` option:
 
@@ -142,7 +142,7 @@ services:
     env_file:
       - .env
 ```
-![Example](/imgs/DevOps/Docker/docker-environment-variables-compose-file.png)
+![Example](/imgs/devops/docker/docker-environment-variables-compose-file.png)
 
 In this example, the `.env` file is used to set the environment variables for the `express-node-app` service.
 

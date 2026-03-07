@@ -1,0 +1,255 @@
+name: Validate order.yaml
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "**/order.yaml"
+  # push:
+  #   branches: [main]
+  #   paths:
+  #     - "**/order.yaml"
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  validate-order:
+    name: order.yaml Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # ─────────────────────────────────────────────
+      # 1. Set up Python
+      # ─────────────────────────────────────────────
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      # ─────────────────────────────────────────────
+      # 2. Run order.yaml checks
+      # ─────────────────────────────────────────────
+      - name: Validate order.yaml
+        id: check
+        run: |
+          python3 << 'PYEOF'
+          import os, sys, yaml, glob, json
+
+          report = []
+
+          def add(yaml_path, msg):
+              report.append({"file": yaml_path, "msg": msg})
+
+          def check_order_yaml(yaml_path):
+              base_dir = os.path.dirname(yaml_path) or "."
+
+              # ── Parse YAML ───────────────────────
+              try:
+                  data = yaml.safe_load(open(yaml_path, encoding="utf-8"))
+              except yaml.YAMLError as e:
+                  add(yaml_path, f"Invalid YAML syntax: {e}")
+                  return
+
+              if not isinstance(data, dict) or "order" not in data:
+                  add(yaml_path, "Missing top-level `order:` key")
+                  return
+
+              seen = set()
+
+              def walk(entries, context_dir):
+                  if not isinstance(entries, list):
+                      return
+
+                  for entry in entries:
+                      if not isinstance(entry, dict):
+                          continue
+
+                      # ── file entry ──────────────
+                      if "file" in entry:
+                          name = str(entry["file"])
+
+                          # No .md extension allowed
+                          if name.endswith(".md"):
+                              add(yaml_path,
+                                  f"`file: {name}` — remove the `.md` extension, bare filename only")
+
+                          # Duplicate check
+                          dup_key = f"file:{context_dir}/{name}"
+                          if dup_key in seen:
+                              add(yaml_path,
+                                  f"Duplicate entry: `file: {name}` listed more than once under `{context_dir}/`")
+                          else:
+                              seen.add(dup_key)
+
+                          # File existence check
+                          bare = name.removesuffix(".md")
+                          exists = any(os.path.isfile(p) for p in [
+                              os.path.join(context_dir, bare + ".md"),
+                              os.path.join(context_dir, bare),
+                          ])
+                          if not exists:
+                              add(yaml_path,
+                                  f"`file: {name}` — not found in `{context_dir}/`")
+
+                          # Recurse into nested order
+                          if "order" in entry:
+                              walk(entry["order"], os.path.join(context_dir, bare))
+
+                      # ── folder entry ────────────
+                      elif "folder" in entry:
+                          name = str(entry["folder"])
+
+                          # Duplicate check
+                          dup_key = f"folder:{context_dir}/{name}"
+                          if dup_key in seen:
+                              add(yaml_path,
+                                  f"Duplicate entry: `folder: {name}` listed more than once under `{context_dir}/`")
+                          else:
+                              seen.add(dup_key)
+
+                          # Folder existence check
+                          folder_path = os.path.join(context_dir, name)
+                          if not os.path.isdir(folder_path):
+                              add(yaml_path,
+                                  f"`folder: {name}` — directory not found at `{folder_path}/`")
+
+                          # Recurse into nested order
+                          if "order" in entry:
+                              walk(entry["order"], folder_path)
+
+              walk(data["order"], base_dir)
+
+          # Run on every order.yaml in the repo
+          for oy in glob.glob("**/order.yaml", recursive=True):
+              check_order_yaml(oy)
+
+          # Write report
+          with open("/tmp/order_report.json", "w") as f:
+              json.dump(report, f)
+
+          if report:
+              print(f"\n❌ Found {len(report)} issue(s) in order.yaml files:")
+              for item in report:
+                  print(f"  {item['file']}: {item['msg']}")
+              sys.exit(1)
+          else:
+              print("✅ All order.yaml files are valid.")
+          PYEOF
+
+      # ─────────────────────────────────────────────
+      # 3. Post failure comment on PR
+      # ─────────────────────────────────────────────
+      - name: Post failure comment on PR
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let report = [];
+            try {
+              report = JSON.parse(fs.readFileSync('/tmp/order_report.json', 'utf8'));
+            } catch (e) {
+              core.warning('Could not read order report: ' + e);
+            }
+
+            if (report.length === 0) return;
+
+            // Group by file
+            const groups = {};
+            for (const item of report) {
+              if (!groups[item.file]) groups[item.file] = [];
+              groups[item.file].push(item.msg);
+            }
+
+            let body = `## 🗂️ order.yaml Validation Failed\n\n`;
+            body += `Found **${report.length} issue(s)**. Please fix them before merging.\n\n---\n\n`;
+
+            for (const [file, msgs] of Object.entries(groups)) {
+              body += `### \`${file}\`\n\n`;
+              body += `| # | Issue |\n|---|-------|\n`;
+              msgs.forEach((msg, i) => {
+                body += `| ${i + 1} | ${msg} |\n`;
+              });
+              body += `\n`;
+            }
+
+            body += `---\n`;
+            body += `> 💡 Fix the issues above, push again, and this check will re-run automatically.\n\n`;
+            body += `**Quick reference:**\n`;
+            body += `- Use bare filenames: \`file: my-note\` not \`file: my-note.md\`\n`;
+            body += `- Every \`file:\` must have a matching \`.md\` file on disk\n`;
+            body += `- Every \`folder:\` must be a real directory\n`;
+            body += `- No duplicate entries under the same parent`;
+
+            // Update existing bot comment or create new one
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const existing = comments.find(c =>
+              c.user.type === 'Bot' && c.body.includes('order.yaml Validation')
+            );
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }
+
+      # ─────────────────────────────────────────────
+      # 4. Post success comment on PR
+      # ─────────────────────────────────────────────
+      - name: Post success comment on PR
+        if: success() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const existing = comments.find(c =>
+              c.user.type === 'Bot' && c.body.includes('order.yaml Validation')
+            );
+
+            const body = `## 🗂️ ✅ order.yaml Validation Passed\n\nAll \`order.yaml\` files are valid — no missing files, folders, duplicates, or \`.md\` extensions found. Ready to merge. 🎉`;
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }

@@ -12,7 +12,7 @@ Before we explore Docker Networking in depth, let’s clarify some foundational 
 - App inside Docker container runs in an isolated docker network.
 - To access the app from outside the container, we need to map the container port to the host port which is called **port binding**.
 
-![Container Port vs Host Port](/imgs/DevOps/Docker/container-port-vs-host-port.png)
+![Container Port vs Host Port](/imgs/devops/docker/container-port-vs-host-port.png)
 
 ## Port Binding
 
@@ -48,7 +48,7 @@ Before we explore Docker Networking in depth, let’s clarify some foundational 
 
 - It can communicate with all containers using **their IP addresses**.
 
-![Docker Host](/imgs/DevOps/Docker/docker-host.png)
+![Docker Host](/imgs/devops/docker/docker-host.png)
 
 ------------------
 
@@ -62,7 +62,7 @@ Docker networks configure how containers communicate both with each other and wi
 
 - Port mapping does not take effect when using the none network driver. `-p` option is ignored. The container is isolated from the network and cannot communicate with the host machine or other containers.
 
-![None Network Driver](/imgs/DevOps/Docker/docker-none-network.png)
+![None Network Driver](/imgs/devops/docker/docker-none-network.png)
  
 ## Bridge Network Driver (Default)
 
@@ -87,7 +87,7 @@ Docker networks configure how containers communicate both with each other and wi
 - Here is how the default bridge network looks like:
     - At start up, Docker engine finds an unused network subnet on the docker host (normally 172.17.0.0/16), and assigns the first IP address of that network (normally 172.17.0.1) to the default bridge - docker0.
     - When you start a container, Docker assigns an IP address from the subnet to the container. The container can communicate with other containers on the same bridge network using this IP address.
-![Bridge Network Driver](/imgs/DevOps/Docker/docker-bridge-network-1.png)
+![Bridge Network Driver](/imgs/devops/docker/docker-bridge-network-1.png)
 
 ### veth Interfaces in Bridge Networks
 
@@ -126,7 +126,7 @@ dockerhost$ docker exec web ip addr show
     inet 172.17.0.2/16 brd 172.17.255.255 scope global eth0
 ```
 
-![veth interfaces](/imgs/DevOps/Docker/docker-bridge-network-veth-1.png)
+![veth interfaces](/imgs/devops/docker/docker-bridge-network-veth-1.png)
 
 ### Notes
 
@@ -142,7 +142,7 @@ dockerhost$ docker exec web ip addr show
 - It has certain advantages most importantly, **service discovery.** Containers on the same user-defined bridge network can communicate with each other using their container names. This is because Docker provides a built-in DNS server that resolves container names to their IP addresses. This makes it easier to connect containers together without having to know their IP addresses.
     > In the default bridge network, you have to use IP addresses to communicate between containers. There is no service discovery since there is no DNS server.
 
-![User-defined Bridge Network](/imgs/DevOps/Docker/docker-user-defined-bridge-network.png)
+![User-defined Bridge Network](/imgs/devops/docker/docker-user-defined-bridge-network.png)
 
 ## Compose-Defined Bridge Network
 
@@ -166,7 +166,7 @@ dockerhost$ docker exec web ip addr show
 - No IP address is allocated to the container, it shares it with the host.
 - Port-mapping does not take effect. “-p”, and “-P” options are ignored. Whatever the port of the application inside the container, it is available as-is on the host’s IP address.
 
-![Host Network Driver](/imgs/DevOps/Docker/docker-host-network.png)
+![Host Network Driver](/imgs/devops/docker/docker-host-network.png)
 
 ## Overlay Network Driver (Multi-Host Networking)
 

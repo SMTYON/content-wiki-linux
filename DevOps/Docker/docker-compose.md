@@ -55,7 +55,7 @@ services: # List of services to run.
       - /app/node_modules # Mounts the /app/node_modules directory in the container. (Anonymous volume)
 ```
 
-![docker-compose](/imgs/DevOps/Docker/docker-compose-example.png)
+![docker-compose](/imgs/devops/docker/docker-compose-example.png)
 
 Notice that the name of the image is `nodeapp-express-node-app`. This is because the `build` key in the `docker-compose.yml` file uses the current directory name with the service name to name the image.
 
