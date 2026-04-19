@@ -2,7 +2,8 @@ order:
 - file: "index.md"
 
 - folder: "How-to-install"
-
+  order:
+    - folder: "Unbreakable OS"
 - folder: "Linux-Basics"
   order:
   - folder: "Introduction-to-Linux"
