@@ -30,7 +30,7 @@ after this open Time Shift like any other program, you have to give it you passw
 
 it will look like something like this:
 
-![Screenshot From 2026-04-13 14-47-05.png](Screenshot_From_2026-04-13_14-47-05.png)
+![Example](imgs/Unbreakable-OS/1.png)
 
 now we are going to click on wizard to configure it, then choose BTRFS, choose where you want your snapshots to be, choose how regularly you want time shift to make a snapshot and how many snapshots to keep (recommended: daily keep 4), then you click finish.
 
@@ -105,10 +105,10 @@ now if you look carefully when you upgrading things through pacman you will see 
 
 #### creating a snapshot before upgrading and saving it:
 
-![Screenshot From 2026-04-13 15-27-12.png](Screenshot_From_2026-04-13_15-27-12.png)
+![Example](imgs/Unbreakable-OS/2.png)
 
 #### Grub-btrfsd making the grub config file:
 
-![Screenshot From 2026-04-13 15-28-23.png](Screenshot_From_2026-04-13_15-28-23.png)
+![Example](imgs/Unbreakable-OS/3.png)
 
 now we can use Arch without any fear of missing everything up, and if we did so we can just load to the snapshot from grub boot menu loader.
